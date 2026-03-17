@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Songs Website</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">My Songs Website</div>
+    <nav>
+        <ul>
+            <li><a href="project.html">Home</a></li>
+            <li><a href="index.html">Songs</a></li>
+            <li><a href="lyrics.html">Lyrics</a></li>
+            <li><a href="contact.html">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <h1>Welcome to My Songs Website</h1>
+    <p>Listen to your favorite tracks, explore lyrics, and enjoy music anytime!</p>
+</section>
+
+<section>
+    <h2>🎶 Popular Songs</h2>
+    <ul class="song-list">
+        <li>Shape of You - Ed Sheeran</li>
+        <li>Blinding Lights - The Weeknd</li>
+        <li>Levitating - Dua Lipa</li>
+        <li>Perfect - Ed Sheeran</li>
+    </ul>
+</section>
+
+<section>
+    <h2>📊 Song Details</h2>
+    <table>
+        <tr>
+            <th>Song</th>
+            <th>Artist</th>
+            <th>Year</th>
+        </tr>
+        <tr>
+            <td>Shape of You</td>
+            <td>Ed Sheeran</td>
+            <td>2017</td>
+        </tr>
+        <tr>
+            <td>Blinding Lights</td>
+            <td>The Weeknd</td>
+            <td>2019</td>
+        </tr>
+        <tr>
+            <td>Levitating</td>
+            <td>Dua Lipa</td>
+            <td>2020</td>
+        </tr>
+        <tr>
+            <td>Perfect</td>
+            <td>Ed Sheeran</td>
+            <td>2017</td>
+        </tr>
+    </table>
+</section>
+<script>
+    // Show welcome alert
+    function showWelcome() {
+        alert("Welcome to My Songs Website! 🎵");
+    }
+
+    // Highlight favorite song
+    function highlightSong() {
+        let fav = document.getElementById("favSong");
+        fav.style.cssText = "color:#1DB954; font-weight:bold; background-color:#121212; padding:5px; border-radius:5px;";
+    }
+
+    // Dark/Light Theme Toggle
+    function toggleTheme() {
+        document.body.classList.toggle("light-theme");
+    }
+
+    // Song Search Filter
+    function filterSongs() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let songs = document.querySelectorAll("#songs ul li");
+        songs.forEach(song => {
+            song.style.display = song.textContent.toLowerCase().includes(input) ? "list-item" : "none";
+        });
+    }
+
+    // Highlight song when clicked
+    function makeClickableSongs() {
+        let songs = document.querySelectorAll("#songs ul li");
+        songs.forEach(song => {
+            song.addEventListener("click", () => {
+                songs.forEach(s => s.style.backgroundColor = ""); // reset
+                song.style.backgroundColor = "#1DB954";
+                song.style.color = "#000";
+                song.style.fontWeight = "bold";
+            });
+        });
+    }
+
+    // Sort table by year
+    function sortTable() {
+        let table = document.querySelector("#songTable table");
+        let rows = Array.from(table.rows).slice(1); // skip header
+        rows.sort((a, b) => {
+            return parseInt(a.cells[2].innerText) - parseInt(b.cells[2].innerText);
+        });
+        rows.forEach(row => table.appendChild(row));
+    }
+
+    // Animated welcome message
+    function animatedWelcome() {
+        let msg = document.createElement("div");
+        msg.innerText = "🎶 Enjoy the Music 🎶";
+        msg.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#1DB954; color:#000; padding:10px 20px; border-radius:10px; font-weight:bold; animation: fadeOut 3s forwards;";
+        document.body.appendChild(msg);
+        setTimeout(() => msg.remove(), 3000);
+    }
+
+    window.onload = function() {
+        showWelcome();
+        makeClickableSongs();
+        animatedWelcome();
+    };
+</script>
+</body>
+</html>
